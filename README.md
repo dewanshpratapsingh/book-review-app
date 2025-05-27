@@ -43,8 +43,8 @@ JWT-related utility functions (token generation, validation, etc.) are located i
 node server.js
 
 ## Sample API Usage
-POST http://localhost:3000/user/signup
-{
+- POST http://localhost:3000/user/signup
+- {
   "email": "dewansh3@example.com",
   "password": "Dewa@1234",
   "name": "Dewansh",

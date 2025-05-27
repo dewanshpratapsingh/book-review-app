@@ -1,7 +1,7 @@
-const mongooose = require('mongoose');
+const mongoose = require('mongoose');
 
 
-const userSchema = new mongooose.Schema({
+const userSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true,
@@ -18,10 +18,38 @@ const userSchema = new mongooose.Schema({
     },
     userType: {
         type: String,
-        enum: ['admin', 'user'],
-        default: 'user',
+        enum: ['R', 'A'],
+        default: 'R',
+    },
+    active: {
+        type: Boolean,
+        default: true,
     },
 }, { timestamps: true });
 
-const User = mongooose.model('User', userSchema);
-module.exports = User;
+
+
+const userAuthSchema = new mongoose.Schema({
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+      required: true,
+    },
+    refreshToken: {
+      type: String,
+      required: true,
+    },
+    refreshTokenExpiresAt: {
+      type: Date,
+      required: true,
+    },
+  }, { timestamps: true });
+  
+
+const UserAuth = mongoose.model('UserAuth', userAuthSchema);
+
+const User = mongoose.model('User', userSchema);
+module.exports = {
+    User,
+    UserAuth
+};

@@ -1,9 +1,14 @@
+const reviewRepository = require('../repository/review.repository');
 class ReviewService{
-  async getReviews(){
-
+  async updateReview(reviewID,updateReviewData){
+    const reviewData = await reviewRepository.updateReview(reviewID,updateReviewData);
+    if (!reviewData) {
+      throw new Error('Review not found');
+    }
+    return reviewData;
   } 
-  async createReview(reviewData){
-    
+  async deletedReview(reviewData){
+    return await reviewRepository.deleteReview(reviewData.id);
   }  
 }
 

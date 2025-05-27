@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const reviewController = require('../controllers/review.controller.js');
-
-router.patch('/:id', async (req, res) => {
+const { authenticateToken } = require('../util/authentication.js');
+router.patch('/:id',authenticateToken, async (req, res) => {
     try {
+        req.body.userId = req.user.id;
         const updatedReview = await reviewController.updateReview(req.params.id, req.body);
         if (!updatedReview) {
             return res.status(404).json({ message: 'Review not found' });
@@ -14,7 +15,7 @@ router.patch('/:id', async (req, res) => {
     }
 });
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id',authenticateToken, async (req, res) => {
     try {
         await reviewController.deleteReview(req.params.id);
         res.status(204).send();

@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const rootRouter = require('./routes/routes');
+
 /**To parser JSON and FORM data in request body */
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
@@ -17,4 +18,4 @@ app.use((err, req, res, next) => {
     res.end();
 });
   
-export default app;
+module.exports = app;

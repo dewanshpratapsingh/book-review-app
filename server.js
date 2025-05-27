@@ -1,12 +1,13 @@
 require('dotenv').config();
 const app = require('./app');
 const PORT = process.env.PORT || 3000;
-
+const dbConfig = require('./config/db.config');
 
 async function startServerDependencies(){
     try {
         // Initialize database connection
-    
+        dbConfig.connectDB();
+        console.log('Database initialized successfully');
         // Initialize Redis connection
     
         // Initialize ElasticSearch connection

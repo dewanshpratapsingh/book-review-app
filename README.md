@@ -36,8 +36,8 @@ JWT-related utility functions (token generation, validation, etc.) are located i
 1. Clone the repository:
    git clone git@github.com:dewanshpratapsingh/book-review-app.git
 2. Go inside the app folder and install dependencies
-   cd book-review-app
-   npm install
+   - cd book-review-app
+   - npm install
 
 ## Run Project
 node server.js
